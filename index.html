@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probatum Forense Digital</title>
+    <link rel="icon" type="image/x-icon" href="./img/icone.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── CABEÇALHO ── */
+        .logo-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 106, 0.20);
+            margin-left: 10px;
+        }
+
+        .cabecalho {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 12px 32px;
+            display: grid;
+            grid-template-columns: 340px 1fr auto;
+            align-items: center;
+            column-gap: 60px;
+        }
+
+            .menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 34px;
+            flex-wrap: nowrap;
+        }
+
+        .menu a {
+            position: relative;
+            color: #F0ECE2;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700px;
+            letter-spacing: 0.8px;
+            padding-bottom: 8px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #D4AF6A;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu a:hover {
+            color: #D4AF6A;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu a.ativo {
+            color: #D4AF6A;
+        }
+
+        .menu a.ativo::after {
+            width: 100%;
+        }
+
+        .pagina {
+            display: none;
+        }
+
+        .pagina.ativa {
+            display: block;
+        }
+
+        /* ── RESET ── */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        section {
+            scroll-margin-top: 120px;
+        }
+
+        /* ── BASE ── */
+        body {
+            background: linear-gradient(180deg, #0D1117 0%, #0A0F16 100%);
+            color: #F0ECE2;
+            font-family: 'Sora', sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'%3E%3Cg fill='none' stroke='%23D4AF6A' stroke-width='1'%3E%3Cpath d='M30 2 L90 2 L118 52 L90 102 L30 102 L2 52 Z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 150px 130px;
+            background-repeat: repeat;
+            background-position: center;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.035;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.12) 0.7px, transparent 0.8px);
+            background-size: 8px 8px;
+            mix-blend-mode: soft-light;
+        }
+
+        /* ── LAYOUT ── */
+        .conteiner {
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* ── CABEÇALHO ── */
+        .logo-wrapper {
+            text-align: center;
+        }
+
+        .logo_1 {
+            width: 400px;
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* ── DIVISORES ── */
+        .divisor-img {
+            text-align: center;
+            margin: 30px auto 40px auto;
+        }
+
+        .divisor-img img {
+            max-width: 800px;
+            width: 80%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .divisoria-2 {
+            width: 100%;
+            max-width: 1500px;
+            height: auto;
+            display: block;
+            margin: 40px auto 0 auto;
+        }
+
+        /* ── CTA ── */
+        .cta {
+            text-align: right;
+            margin-top: 20px;
+            margin-left: 50px;
+        }
+
+        .cta a {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0D1117;
+            background: linear-gradient(135deg, #D4AF6A, #B8964F);
+            border: 1px solid rgba(212, 175, 106, 0.85);
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 18px rgba(212, 175, 106, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .cta a:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #E6C27A, #C9A95C);
+            box-shadow: 0 10px 26px rgba(212, 175, 106, 0.5);
+        }
+
+        /* ── HEADLINE ── */
+        .headline {
+            text-align: center;
+            font-size: clamp(22px, 4vw, 36px);
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            color: #D4AF6A;
+            font-style: italic;
+        }
+
+        .subheadline {
+            text-align: center;
+            font-size: clamp(15px, 2.5vw, 20px);
+            letter-spacing: 0.5px;
+            margin-bottom: 30px;
+            color: #D4AF6A;
+        }
+
+        /* ── SEÇÃO SOBRE ── */
+            .card-sobre {
+                max-width: 1400px;
+                margin: 30px auto 50px auto;
+                padding: 30px 40px;
+                background: linear-gradient(
+                    180deg,
+                    rgba(24, 32, 46, 0.20),
+                    rgba(13, 17, 23, 0.35)
+                );
+                border: 1px solid rgba(212, 175, 106, 0.18);
+                border-radius: 14px;
+            }
+
+            .sobre-conteudo {
+                display: grid;
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 50px;
+                align-items: center;
+            }
+
+            .sobre-texto {
+                max-width: 760px;
+            }
+
+            .titulo-secao {
+                text-align: center;
+                font-size: clamp(24px, 3vw, 40px);
+                letter-spacing: 1px;
+                margin: 0 0 18px 0;
+                color: #D4AF6A;
+                font-style: italic;
+                line-height: 1.1;
+            }
+
+            .texto-sobre {
+                max-width: none;
+                margin: 10px 0;
+                font-size: clamp(17px, 1.5vw, 24px);
+                letter-spacing: 0.2px;
+                color: #F5F5F5;
+                text-indent: 0;
+                line-height: 1.7;
+                text-align: justify;
+                padding: 0;
+                font-size: 20px;
+                text-indent: 40px;
+            }
+
+            .img_sobre {
+                width: 100%;
+            }
+
+            .img_sobre img {
+                width: 100%;
+                max-width: 100%;
+                height: 330px;
+                object-fit: cover;
+                border-radius: 14px;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.30);
+            }
+    
+        
+
+        /* ── CARTÕES FLIP ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .img-flip {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .flip-card {
+            background: transparent;
+            width: 100%;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 10px rgba(212, 175, 106, 0.45);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border: 1px solid #D4AF6A;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(180deg, #162033 0%, #111827 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            gap: 18px;
+            text-align: center;
+        }
+
+        .flip-card-front h3 {
+            margin: 0;
+            font-size: clamp(18px, 2.9vw, 24px);
+            line-height: 1.3;
+            color: #D4AF6A;
+            font-style: italic;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(180deg, #162033 0%, #111827 100%);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .flip-card-back p {
+            margin: 0;
+            font-size: clamp(15px, 2.4vw, 20px);
+            line-height: 1.55;
+            color: #F5F5F5;
+        }
+
+        /* ── CAIXA DE ATUAÇÃO ── */
+        .caixa {
+            width: 100%;
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 40px 60px;
+            background: linear-gradient(
+                180deg,
+                rgba(24, 32, 46, 0.38),
+                rgba(13, 17, 23, 0.70)
+            );
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.25),
+                inset 0 0 18px rgba(212, 175, 106, 0.04);
+            border: 1px solid rgba(212, 175, 106, 0.25);
+            border-radius: 14px;
+            backdrop-filter: blur(4px);
+        }
+
+        .serv {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 35px;
+            max-width: 1100px;
+            margin: 30px auto 70px auto;
+        }
+
+        .corp {
+            display: grid;
+            grid-template-columns: repeat(1fr);
+            gap: 22px;
+            max-width: 1100px;
+            margin: 30px auto 0 auto;
+        }
+
+        .servico-item {
+            position: relative;
+            font-size: clamp(18px, 3vw, 25px);
+            color: #F5F5F5;
+            line-height: 1.4;
+            text-align: center;
+            padding: 10px 8px;
+            margin: 0;
+            cursor: pointer;
+            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .servico-item::before,
+        .servico-item::after {
+            content: none;
+        }
+
+        .servico-item:hover {
+            color: #D4AF6A;
+            text-shadow: 0 0 8px rgba(212, 175, 106, 0.85);
+            transform: translateY(-2px);
+        }
+
+        /* ── POR QUE A PROBATUM ── */
+        .card-transparente {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 35px 40px;
+            border-radius: 14px;
+        }
+
+        .titulo-bloco {
+            text-align: center;
+            font-size: clamp(22px, 4.3vw, 40px);
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 35px;
+            color: #D4AF6A;
+            font-style: italic;
+        }
+
+        .probatum-destaques {
+            display: flex;
+            flex-direction: column;
+            gap: 38px;
+        }
+
+        .linha-destaque {
+            display: grid;
+            grid-template-columns: 110px 160px 1fr;
+            grid-template-areas: "icone conector texto";
+            align-items: center;
+            gap: 22px;
+        }
+
+        .linha-destaque.invertida {
+            grid-template-columns: 1fr 160px 110px;
+            grid-template-areas: "texto conector icone";
+        }
+
+        .bloco-icone {
+            grid-area: icone;
+            justify-self: start;
+            text-align: left;
+        }
+
+        .bloco-icone img {
+            width: 110px;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 106, 0.35));
+        }
+
+        .conector {
+            grid-area: conector;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .conector svg {
+            width: 90%;
+            height: 40px;
+            display: block;
+        }
+
+        .linha-destaque.invertida .conector svg {
+            transform: scaleX(-1);
+        }
+
+        .bloco-texto {
+            grid-area: texto;
+        }
+
+        .titulo-item {
+            color: #D4AF6A;
+            font-size: clamp(18px, 3.1vw, 27px);
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        .texto-item {
+            color: #F5F5F5;
+            font-size: clamp(16px, 2.5vw, 22px);
+            line-height: 1.55;
+            text-align: justify;
+            margin: 0;
+        }
+
+        /* ── RODAPÉ ── */
+        .rodape {
+            text-align: center;
+            padding: 35px 20px;
+            color: rgba(245, 245, 245, 0.75);
+            border-top: 1px solid rgba(212, 175, 106, 0.2);
+            line-height: 1;
+        }
+        .card-profissinais {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 35px 40px;
+            border-radius: 14px;
+        }
+        .texto-profissionais {
+            color: #F5F5F5;
+            font-size: 24px;
+            letter-spacing: 0.2px;
+            color: #F5F5F5;
+            text-indent: 0;
+            line-height: 1.7;
+            text-align: justify;
+            padding: 0;
+            font-size: 20px;
+            text-indent: 40px;
+        }
+
+        /* ══════════════════════════════
+           RESPONSIVO
+        ══════════════════════════════ */
+
+        @media (max-width: 1300px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .conteiner {
+                width: 100%;
+                padding: 20px 24px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .caixa {
+                padding: 30px 30px;
+            }
+
+            .serv {
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin-bottom: 40px;
+            }
+
+            .corp {
+                grid-template-columns: 1fr;
+            }
+
+            .linha-destaque,
+            .linha-destaque.invertida {
+                grid-template-columns: 1fr;
+                grid-template-areas: "texto";
+            }
+
+            .bloco-icone,
+            .conector {
+                display: none;
+            }
+
+            .bloco-texto,
+            .bloco-icone {
+                text-align: center;
+            }
+
+            .texto-item {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 900px) {
+        .card-sobre {
+            padding: 24px 20px;
+        }
+
+        .sobre-conteudo {
+            grid-template-columns: 1fr;
+            gap: 26px;
+        }
+
+        .sobre-texto,
+        .img_sobre {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .titulo-secao {
+            text-align: center;
+        }
+    }
+
+        @media (max-width: 600px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .flip-card {
+                height: 260px;
+            }
+
+            .card-transparente {
+                padding: 20px 16px;
+            }
+
+            .caixa {
+                padding: 24px 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .flip-card {
+                height: 220px;
+            }
+
+            .flip-card-back {
+                padding: 16px;
+            }
+        }
+
+        /* ── NAV WRAPPER (desktop) ── */
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* ── HAMBÚRGUER ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #D4AF6A;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.aberto span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.aberto span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.aberto span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ── FLIP CARD TOUCH ── */
+        .flip-card.virado .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* ── MOBILE (≤ 768px) ── */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-wrapper {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: center;
+                gap: 32px;
+                padding: 36px 20px;
+                background: rgba(10, 15, 22, 0.98);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(212, 175, 106, 0.2);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-8px);
+                transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+                z-index: 50;
+            }
+
+            .nav-wrapper.aberto {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 28px;
+            }
+
+            .menu a {
+                font-size: 17px;
+                letter-spacing: 1.5px;
+            }
+
+            .logo_1 {
+                width: 200px;
+                max-width: 55vw;
+            }
+
+            .cta a {
+                font-size: 15px;
+                padding: 12px 24px;
+            }
+
+            .card-sobre {
+                margin: 10px 0 30px;
+                padding: 20px 16px;
+            }
+
+            .card-profissinais {
+                margin: 10px 0;
+                padding: 20px 16px;
+            }
+
+            .card-transparente {
+                padding: 20px 16px;
+                margin: 20px 0;
+            }
+
+            .caixa {
+                margin: 20px 0;
+            }
+
+            .texto-sobre,
+            .texto-profissionais {
+                font-size: 16px;
+                text-indent: 20px;
+            }
+
+            .flip-card-back p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .img_sobre img {
+                height: 220px;
+            }
+        }
+
+
+        /* ══════════════════════════════
+           AJUSTE FINAL RESPONSIVO - MOBILE
+           Colei este bloco no final para sobrescrever regras antigas.
+        ══════════════════════════════ */
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .menu {
+            margin-top: 0;
+            flex-wrap: nowrap;
+        }
+
+        .cta {
+            margin: 0;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .cta a {
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1180px) and (min-width: 769px) {
+            .cabecalho {
+                padding: 10px 24px;
+            }
+
+            .logo_1 {
+                width: 300px;
+                margin-bottom: 0;
+            }
+
+            .nav-wrapper {
+                gap: 28px;
+            }
+
+            .menu {
+                gap: 18px;
+            }
+
+            .menu a {
+                font-size: 12px;
+                letter-spacing: 0.5px;
+            }
+
+            .cta a {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .conteiner {
+                width: 100%;
+                padding: 0;
+            }
+
+            .logo-wrapper {
+                margin-bottom: 0;
+                position: sticky;
+                top: 0;
+            }
+
+            .cabecalho {
+                position: relative;
+                min-height: 74px;
+                padding: 10px 16px;
+            }
+
+            .logo_1 {
+                width: 190px;
+                max-width: 68vw;
+                margin-bottom: 0;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-left: auto;
+            }
+
+            .nav-wrapper {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 22px;
+                padding: 24px 18px 28px;
+                max-height: calc(100vh - 74px);
+                overflow-y: auto;
+                background: rgba(10, 15, 22, 0.98);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(212, 175, 106, 0.25);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-8px);
+                pointer-events: none;
+                transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+                z-index: 1000;
+            }
+
+            .nav-wrapper.aberto {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .menu {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                flex-direction: column;
+                align-items: center;
+                flex-wrap: nowrap;
+                gap: 18px;
+            }
+
+            .menu a {
+                font-size: 15px;
+                letter-spacing: 1.2px;
+                padding: 10px 0;
+            }
+
+            .cta {
+                width: 100%;
+                margin: 4px 0 0 0;
+                text-align: center;
+            }
+
+            .cta a {
+                width: min(100%, 310px);
+                font-size: 14px;
+                padding: 13px 18px;
+            }
+
+            .pagina {
+                padding: 0 16px;
+            }
+
+            .headline {
+                margin-top: 24px;
+                font-size: clamp(21px, 6.2vw, 30px);
+                line-height: 1.18;
+                letter-spacing: 0.5px;
+            }
+
+            .subheadline {
+                font-size: 15px;
+                line-height: 1.5;
+                margin: 8px auto 20px auto;
+            }
+
+            .divisor-img {
+                margin: 18px auto 24px auto;
+            }
+
+            .divisor-img img,
+            .divisoria-2 {
+                width: 100%;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 0;
+            }
+
+            .flip-card {
+                height: 270px;
+                max-width: 360px;
+                margin: 0 auto;
+            }
+
+            .img-flip {
+                max-height: 120px;
+                object-fit: contain;
+            }
+
+            .card-sobre,
+            .card-profissinais,
+            .card-transparente,
+            .caixa {
+                margin: 18px 0;
+                padding: 20px 16px;
+            }
+
+            .sobre-conteudo {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .titulo-secao,
+            .titulo-bloco {
+                font-size: 26px;
+                line-height: 1.15;
+                margin-bottom: 18px;
+            }
+
+            .texto-sobre,
+            .texto-profissionais,
+            .texto-item {
+                text-align: left;
+                font-size: 15.5px;
+                line-height: 1.65;
+                text-indent: 0;
+            }
+
+            .linha-destaque,
+            .linha-destaque.invertida {
+                grid-template-columns: 1fr;
+                grid-template-areas: "texto";
+            }
+
+            .bloco-icone,
+            .conector {
+                display: none;
+            }
+
+            .img_sobre img {
+                height: auto;
+                max-height: 240px;
+                object-fit: cover;
+            }
+
+            .serv {
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin: 20px auto 40px auto;
+            }
+
+            .corp {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .servico-item {
+                font-size: 17px;
+                line-height: 1.45;
+                padding: 12px 4px;
+            }
+
+            .rodape {
+                padding: 28px 16px;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .cabecalho {
+                min-height: 68px;
+                padding: 8px 12px;
+            }
+
+            .logo_1 {
+                width: 165px;
+                max-width: 70vw;
+            }
+
+            .hamburger span {
+                width: 23px;
+            }
+
+            .nav-wrapper {
+                max-height: calc(100vh - 68px);
+                padding: 20px 14px 24px;
+            }
+
+            .menu {
+                gap: 14px;
+            }
+
+            .menu a {
+                font-size: 14px;
+            }
+
+            .cta a {
+                width: 100%;
+                font-size: 13.5px;
+                padding: 12px 14px;
+            }
+
+            .pagina {
+                padding: 0 12px;
+            }
+
+            .headline {
+                font-size: 22px;
+            }
+
+            .subheadline {
+                font-size: 14px;
+            }
+
+            .flip-card {
+                height: 245px;
+            }
+
+            .flip-card-front {
+                padding: 16px;
+                gap: 12px;
+            }
+
+            .flip-card-back {
+                padding: 16px;
+            }
+
+            .flip-card-back p {
+                font-size: 13.5px;
+                line-height: 1.45;
+            }
+
+            .card-sobre,
+            .card-profissinais,
+            .card-transparente,
+            .caixa {
+                padding: 18px 14px;
+            }
+
+            .titulo-secao,
+            .titulo-bloco {
+                font-size: 23px;
+            }
+
+            .texto-sobre,
+            .texto-profissionais,
+            .texto-item {
+                font-size: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="conteiner">
+
+        <header class="logo-wrapper">
+            <div class="cabecalho">
+                <a href="#" class="logo-link" onclick="mostrarPagina('inicio'); fecharMenu(); return false;">
+                    <img src="./img/logo_1.png" class="logo_1" alt="Probatum Forense Digital">
+                </a>
+
+                <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="nav-wrapper" id="nav-wrapper">
+                    <nav class="menu">
+                        <a href="#" onclick="mostrarPagina('inicio'); fecharMenu(); return false;">INÍCIO</a>
+                        <a href="#" onclick="mostrarPagina('sobre'); fecharMenu(); return false;">SOBRE NÓS</a>
+                        <a href="#" onclick="mostrarPagina('profissionais'); fecharMenu(); return false;">PROFISSIONAIS</a>
+                        <a href="#" onclick="mostrarPagina('servicos'); fecharMenu(); return false;">SERVIÇOS</a>
+                        <a href="#" onclick="mostrarPagina('diferenciais'); fecharMenu(); return false;">DIFERENCIAIS</a>
+                    </nav>
+
+                    <div class="cta">
+                        <a href="https://wa.me/5551990140298?text=Olá,%20gostaria%20de%20solicitar%20uma%20análise." target="_blank">
+                            Solicitar uma análise
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="inicio" class="pagina ativa">
+            <h1 class="headline">Forense Digital com Rigor Técnico e Validade Jurídica</h1>
+            <p class="subheadline">Transformamos dados em prova, com método, integridade e precisão.</p>
+
+            <div class="divisor-img">
+                <img src="./img/divisoria2.png" alt="Divisória">
+            </div>
+            <div class="card-grid">
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-flip" src="./img/evidencia.png" alt="Evidência Digital">
+                            <h3>Evidência Digital</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Transformação de dados brutos em elementos probatórios válidos, compreensíveis e utilizáveis no contexto jurídico.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-flip" src="./img/metodo.png" alt="Análise Técnica">
+                            <h3>Análise Técnica</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Interpretação especializada de dados digitais com foco na extração de informações relevantes para tomada de decisão.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-flip" src="./img/confiabilidade.png" alt="Confiabilidade">
+                            <h3>Confiabilidade</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Metodologia estruturada que permite resultados reproduzíveis e tecnicamente verificáveis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-flip" src="./img/integridade.png" alt="Integridade">
+                            <h3>Integridade</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Utilização de mecanismos técnicos para assegurar que os dados analisados permanecem inalterados durante todo o processo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="img-flip" src="./img/sustentação.png" alt="Sustentação">
+                            <h3>Sustentação</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Elaboração de pareceres e laudos fundamentados, com linguagem clara e base técnica sólida para sustentação em processos e auditorias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="pagina">
+            <div class="card-sobre">
+                <div class="sobre-conteudo">
+                    
+                    <div class="sobre-texto">
+                        <h2 class="titulo-secao">Atuação Técnica</h2>
+                        <p class="texto-sobre">     
+                            A Probatum Forense Digital é uma empresa especializada em soluções de perícia digital voltadas ao suporte técnico em demandas jurídicas e corporativas. Com atuação estratégica nas áreas cível, trabalhista e administrativa, a empresa oferece suporte qualificado a escritórios de advocacia e organizações que necessitam de análise técnica robusta em evidências digitais.
+                        </p>
+                        <P class="texto-sobre">   
+                            Além do atendimento corporativo e jurídico, a Probatum também presta serviços diretamente ao cliente particular. Pessoas físicas que necessitam preservar conteúdo digital — como publicações em redes sociais, conversas, páginas web ou dados de dispositivos móveis e computadores — encontram na Probatum um serviço técnico especializado, com geração de documentação adequada para uso como prova em processos judiciais ou registros particulares.
+                        </p>
+                    </div>
+
+                    <div class="img_sobre">
+                        <img src="./img/img_sobre.png" alt="img_sobre">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profissionais" class="pagina">
+            <div class="card-profissinais">
+                <h2 class="titulo-secao titulo-bloco">Equipe Técnica</h2>
+                    <p class="texto-profissionais">
+                    Nossa equipe é composta por profissionais com sólida atuação na área de análise técnica e investigação de dados digitais, com experiência voltada à identificação, coleta, preservação, processamento e análise de vestígios em ambientes computacionais e dispositivos eletrônicos.</p>
+
+                    <p class="texto-profissionais">Possuem expertise na condução de procedimentos que exigem elevado rigor metodológico, com foco na integridade, autenticidade, rastreabilidade e confiabilidade das evidências digitais, observando padrões técnicos reconhecidos e boas práticas internacionais aplicáveis à cadeia de custódia.</p>
+
+                    <p class="texto-profissionais">Atuam na extração e tratamento de dados provenientes de dispositivos móveis, sistemas computacionais e ambientes digitais, incluindo a análise de arquivos, metadados e reconstrução cronológica de eventos, com aplicação de técnicas forenses e validação por meio de algoritmos de hash.</p>
+
+                    <p class="texto-profissionais">Desenvolvem trabalhos voltados à organização e interpretação de grandes volumes de dados, com indexação, cruzamento de informações e produção de relatórios técnicos estruturados, capazes de subsidiar decisões em contextos administrativos, cíveis e trabalhistas.</p>
+
+                    <p class="texto-profissionais">Também exercem assessoramento técnico especializado, auxiliando na definição de estratégias relacionadas à obtenção e análise de dados digitais, sempre com foco na segurança da informação, na robustez probatória e na adequação aos parâmetros legais.</p>
+
+                    <p class="texto-profissionais">Além da atuação técnica, possuem perfil voltado à padronização de procedimentos, desenvolvimento de metodologias replicáveis e aprimoramento contínuo de fluxos de trabalho, buscando elevar o nível de confiabilidade e eficiência das análises realizadas.        
+                    </p>
+            </div>
+        </section>
+
+        <section id="servicos" class="pagina">
+            <div class="caixa">
+                <h3 class="titulo-bloco">Atuação Jurídica</h3>
+                <div class="serv">
+                    <div class="coluna1">
+                        <p class="servico-item">Perícia em dispositivos móveis</p>
+                        <p class="servico-item">Aquisição forense</p>
+                        <p class="servico-item">Recuperação de dados</p>
+                        <p class="servico-item">Análise de evidências digitais</p>
+                        <p class="servico-item">Validação de integridade</p>
+                    </div>
+                    <div class="coluna2">
+                        <p class="servico-item">Aquisição web com preservação</p>
+                        <p class="servico-item">Elaboração de laudos periciais</p>
+                        <p class="servico-item">Parecer técnico</p>
+                        <p class="servico-item">Assistência técnica judicial</p>
+                        <p class="servico-item">Quesitos e manifestação técnica</p>
+                    </div>
+                </div>
+
+                <h3 class="titulo-bloco">Atuação Corporativa Empresarial e Particular</h3>
+                <div class="corp">
+                    <p class="servico-item">Preservação de conteúdo e publicações em redes sociais, conversas, páginas web ou dados de dispositivos móveis e computadores </p>
+                    <p class="servico-item">Investigação interna</p>
+                    <p class="servico-item">Auditoria digital</p>
+                    <p class="servico-item">Análise de incidentes</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="diferenciais" class="pagina">
+            <div class="card-transparente">
+                <h2 class="titulo-secao titulo-bloco">Por que a Probatum?</h2>
+
+                <div class="probatum-destaques">
+
+                    <div class="linha-destaque">
+                        <div class="bloco-icone">
+                            <img src="./img/metodologia.png" alt="Metodologia">
+                        </div>
+                        <div class="conector">
+                            <svg viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M8 12 C 40 12, 40 36, 78 36 L 172 36" fill="none" stroke="#D4AF6A" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="8" cy="12" r="4" fill="#D4AF6A"/>
+                            </svg>
+                        </div>
+                        <div class="bloco-texto">
+                            <p class="titulo-item">1. Metodologia Técnica Estruturada</p>
+                            <p class="texto-item">
+                                Procedimentos padronizados e fundamentados em boas práticas internacionais, garantindo que cada etapa da análise digital seja conduzida com consistência, rastreabilidade e rigor técnico.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="linha-destaque invertida">
+                        <div class="bloco-icone">
+                            <img src="./img/cadeia.png" alt="Preservação da evidência">
+                        </div>
+                        <div class="conector">
+                            <svg viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M8 12 C 40 12, 40 36, 78 36 L 172 36" fill="none" stroke="#D4AF6A" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="8" cy="12" r="4" fill="#D4AF6A"/>
+                            </svg>
+                        </div>
+                        <div class="bloco-texto">
+                            <p class="titulo-item">2. Preservação Rigorosa da Evidência</p>
+                            <p class="texto-item">
+                                Aplicação de técnicas de coleta e preservação que asseguram a integridade dos dados, evitando alterações indevidas e mantendo a validade da evidência ao longo de todo o processo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="linha-destaque">
+                        <div class="bloco-icone">
+                            <img src="./img/comuni.png" alt="Comunicação">
+                        </div>
+                        <div class="conector">
+                            <svg viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M8 12 C 40 12, 40 36, 78 36 L 172 36" fill="none" stroke="#D4AF6A" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="8" cy="12" r="4" fill="#D4AF6A"/>
+                            </svg>
+                        </div>
+                        <div class="bloco-texto">
+                            <p class="titulo-item">3. Comunicação Clara para o Meio Jurídico</p>
+                            <p class="texto-item">
+                                Elaboração de documentos técnicos com linguagem acessível e estruturada, permitindo que advogados, magistrados e partes compreendam com clareza os resultados da análise.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="linha-destaque invertida">
+                        <div class="bloco-icone">
+                            <img src="./img/ferramenta.png" alt="Ferramentas">
+                        </div>
+                        <div class="conector">
+                            <svg viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M10 12 C 40 12, 40 36, 78 36 L 172 36" fill="none" stroke="#D4AF6A" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="10" cy="12" r="4" fill="#D4AF6A"/>
+                            </svg>
+                        </div>
+                        <div class="bloco-texto">
+                            <p class="titulo-item">4. Ferramentas Próprias para Coleta e Aquisição</p>
+                            <p class="texto-item">
+                                A Probatum conta com uma suíte própria de ferramentas desenvolvidas para apoiar procedimentos de coleta, aquisição e preservação de evidências digitais, proporcionando maior agilidade, padronização e dinamismo ao processo técnico.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div>
+            <img class="divisoria-2" src="./img/divisoria.png" alt="Divisória">
+        </div>
+
+        <footer class="rodape">
+            <p>Probatum Forense Digital</p>
+            <p>Forense digital com rigor técnico, e validade jurídica.</p>
+        </footer>
+
+    </div>
+    <script>
+    function mostrarPagina(id) {
+        const paginas = document.querySelectorAll('.pagina');
+        paginas.forEach(function(pagina) {
+            pagina.classList.remove('ativa');
+        });
+        document.getElementById(id).classList.add('ativa');
+    }
+
+    function toggleMenu() {
+        const hamburger = document.getElementById('hamburger');
+        const navWrapper = document.getElementById('nav-wrapper');
+        const aberto = hamburger.classList.toggle('aberto');
+        navWrapper.classList.toggle('aberto', aberto);
+        hamburger.setAttribute('aria-expanded', aberto);
+    }
+
+    function fecharMenu() {
+        const hamburger = document.getElementById('hamburger');
+        const navWrapper = document.getElementById('nav-wrapper');
+        hamburger.classList.remove('aberto');
+        navWrapper.classList.remove('aberto');
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    // Touch support for flip cards
+    document.querySelectorAll('.flip-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+            this.classList.toggle('virado');
+        });
+    });
+    </script>
+</body>
+</html>
