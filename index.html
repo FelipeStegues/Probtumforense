@@ -102,6 +102,11 @@
 
         /* ── BASE ── */
         body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        body {
             background: linear-gradient(180deg, #0D1117 0%, #0A0F16 100%);
             color: #F0ECE2;
             font-family: 'Sora', sans-serif;
@@ -109,7 +114,6 @@
             padding: 0;
             position: relative;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         body::before {
@@ -1168,10 +1172,12 @@
             }
         }
 
-        @media (max-width: 420px) {
+       @media (max-width: 1180px) {
             .cabecalho {
-                min-height: 68px;
-                padding: 8px 12px;
+                width: 100%;
+                max-width: 100%;
+                grid-template-columns: 1fr auto;
+            }
             }
 
             .logo_1 {
