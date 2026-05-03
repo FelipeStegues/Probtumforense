@@ -245,7 +245,7 @@
             .sobre-conteudo {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 20px;px;
+                gap: 20px;
                 align-items: center;
             }
 
@@ -798,464 +798,408 @@
                 height: 220px;
             }
         }
+/* ══════════════════════════════
+   AJUSTE FINAL LIMPO DO CABEÇALHO E MOBILE
+══════════════════════════════ */
 
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
-        /* ══════════════════════════════
-           AJUSTE FINAL RESPONSIVO - MOBILE
-           Colei este bloco no final para sobrescrever regras antigas.
-        ══════════════════════════════ */
+.logo-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
 
-        .logo-link {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
+.cta {
+    margin: 0;
+}
 
-        .nav-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 48px;
-        }
+.cta a {
+    white-space: nowrap;
+}
 
-        .menu {
-            margin-top: 0;
-            flex-wrap: nowrap;
-        }
-
-        .cta {
-            margin: 0;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .cta a {
-            white-space: nowrap;
-        }
-
-         @media (max-width: 1300px) {
-            .card-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 900px) {
-            .conteiner {
-                width: 100%;
-                padding: 20px 24px;
-            }
-
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .caixa {
-                padding: 30px 30px;
-            }
-
-            .serv {
-                grid-template-columns: 1fr;
-                gap: 0;
-                margin-bottom: 40px;
-            }
-
-            .corp {
-                grid-template-columns: 1fr;
-            }
-
-            .linha-destaque,
-            .linha-destaque.invertida {
-                grid-template-columns: 1fr;
-                grid-template-areas: "texto";
-            }
-
-            .bloco-icone,
-            .conector {
-                display: none;
-            }
-
-            .bloco-texto,
-            .bloco-icone {
-                text-align: center;
-            }
-
-            .texto-item {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 900px) {
-        .card-sobre {
-            padding: 24px 20px;
-        }
-
-        .sobre-conteudo {
-            grid-template-columns: 1fr;
-            gap: 26px;
-        }
-
-        .sobre-texto,
-        .img_sobre {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .titulo-secao {
-            text-align: center;
-        }
+/* DESKTOP: LOGO ESQUERDA, MENU CENTRO, BOTÃO DIREITA */
+@media (min-width: 1181px) {
+    .cabecalho {
+        max-width: 1700px;
+        width: 100%;
+        grid-template-columns: 320px 1fr 320px;
+        column-gap: 20px;
+        padding: 12px 32px;
+        align-items: center;
     }
 
-        @media (max-width: 600px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-                padding: 0;
-            }
+    .logo-link {
+        grid-column: 1;
+        justify-self: start;
+    }
 
-            .flip-card {
-                height: 260px;
-            }
+    .logo_1 {
+        width: 260px;
+        max-width: 100%;
+        margin-bottom: 0;
+    }
 
-            .card-transparente {
-                padding: 20px 16px;
-            }
+    .hamburger {
+        display: none;
+    }
 
-            .caixa {
-                padding: 24px 16px;
-            }
-        }
+    .nav-wrapper {
+        display: contents;
+    }
 
-        @media (max-width: 400px) {
-            .flip-card {
-                height: 220px;
-            }
+    .menu {
+        grid-column: 2;
+        justify-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        margin: 0;
+        flex-wrap: nowrap;
+    }
 
-            .flip-card-back {
-                padding: 16px;
-            }
-        }
+    .menu a {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+    }
 
-        @media (max-width: 1180px) and (min-width: 769px) {
-            .cabecalho {
-                padding: 10px 22px;
-            }
+    .cta {
+        grid-column: 3;
+        justify-self: end;
+        text-align: right;
+    }
 
-            .logo_1 {
-                width: 300px;
-                margin-bottom: 0;
-            }
+    .cta a {
+        font-size: 18px;
+        padding: 14px 32px;
+    }
+}
 
-            .nav-wrapper {
-                gap: 28px;
-            }
+/* ATÉ 1180PX: SÓ O MENU VIRA HAMBÚRGUER */
+@media (max-width: 1180px) {
+    .logo-wrapper {
+        width: 100%;
+        margin-left: 0;
+        overflow: hidden;
+    }
 
-            .menu {
-                gap: 18px;
-            }
+    .cabecalho {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        padding: 10px 18px;
+        column-gap: 12px;
+        min-height: 74px;
+    }
 
-            .menu a {
-                font-size: 12px;
-                letter-spacing: 0.5px;
-            }
+    .logo-link {
+        justify-self: start;
+        min-width: 0;
+    }
 
-            .cta a {
-                font-size: 14px;
-                padding: 12px 20px;
-            }
-        }
+    .logo_1 {
+        width: 190px;
+        max-width: 65vw;
+        margin-bottom: 0;
+    }
 
-        @media (max-width: 1180px) {
-            .conteiner {
-                width: 100%;
-                padding: 0;
-            }
+    .hamburger {
+        display: flex;
+        justify-self: end;
+        margin-left: 0;
+        margin-right: 8px;
+    }
 
-            .logo-wrapper {
-                margin-bottom: 0;
-                position: sticky;
-                top: 0;
-            }
+    .nav-wrapper {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
 
-            .cabecalho {
-                position: relative;
-                min-height: 74px;
-                padding: 10px 16px;
-            }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
 
-            .logo_1 {
-                width: 190px;
-                max-width: 68vw;
-                margin-bottom: 0;
-            }
+        padding: 24px 18px 28px;
+        max-height: calc(100vh - 74px);
+        overflow-y: auto;
 
-            .hamburger {
-                display: flex;
-                margin-left: auto;
-                margin-rigth: 10px
-            }
+        background: rgba(10, 15, 22, 0.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(212, 175, 106, 0.25);
 
-            .nav-wrapper {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 22px;
-                padding: 24px 18px 28px;
-                max-height: calc(100vh - 74px);
-                overflow-y: auto;
-                background: rgba(10, 15, 22, 0.98);
-                backdrop-filter: blur(12px);
-                border-bottom: 1px solid rgba(212, 175, 106, 0.25);
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-8px);
-                pointer-events: none;
-                transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-                z-index: 1000;
-            }
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
 
-            .nav-wrapper.aberto {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-                pointer-events: auto;
-            }
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 1000;
+    }
 
-            .menu {
-                width: 100%;
-                margin: 0;
-                padding: 0;
-                flex-direction: column;
-                align-items: center;
-                flex-wrap: nowrap;
-                gap: 18px;
-            }
+    .nav-wrapper.aberto {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
 
-            .menu a {
-                font-size: 15px;
-                letter-spacing: 1.2px;
-                padding: 10px 0;
-            }
+    .menu {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 18px;
+    }
 
-            .cta {
-                width: 100%;
-                margin: 4px 0 0 0;
-                text-align: center;
-            }
+    .menu a {
+        font-size: 15px;
+        letter-spacing: 1.2px;
+        padding: 10px 0;
+    }
 
-            .cta a {
-                width: min(100%, 310px);
-                font-size: 14px;
-                padding: 13px 18px;
-            }
+    .cta {
+        width: 100%;
+        margin: 4px 0 0 0;
+        text-align: center;
+    }
 
-            .pagina {
-                padding: 0 16px;
-            }
+    .cta a {
+        width: min(100%, 310px);
+        font-size: 14px;
+        padding: 13px 18px;
+    }
+}
 
-            .headline {
-                margin-top: 24px;
-                font-size: clamp(21px, 6.2vw, 30px);
-                line-height: 1.18;
-                letter-spacing: 0.5px;
-            }
+/* CELULAR */
+@media (max-width: 768px) {
+    .conteiner {
+        width: 100%;
+        padding: 0;
+    }
 
-            .subheadline {
-                font-size: 15px;
-                line-height: 1.5;
-                margin: 8px auto 20px auto;
-            }
+    .pagina {
+        padding: 0 16px;
+    }
 
-            .divisor-img {
-                margin: 18px auto 24px auto;
-            }
+    .headline {
+        margin-top: 24px;
+        font-size: clamp(21px, 6.2vw, 30px);
+        line-height: 1.18;
+        letter-spacing: 0.5px;
+    }
 
-            .divisor-img img,
-            .divisoria-2 {
-                width: 100%;
-            }
+    .subheadline {
+        font-size: 15px;
+        line-height: 1.5;
+        margin: 8px auto 20px auto;
+    }
 
-            .card-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
-                padding: 0;
-            }
+    .divisor-img {
+        margin: 18px auto 24px auto;
+    }
 
-            .flip-card {
-                height: 270px;
-                max-width: 360px;
-                margin: 0 auto;
-            }
+    .divisor-img img,
+    .divisoria-2 {
+        width: 100%;
+    }
 
-            .img-flip {
-                max-height: 120px;
-                object-fit: contain;
-            }
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 0;
+    }
 
-            .card-sobre,
-            .card-profissinais,
-            .card-transparente,
-            .caixa {
-                margin: 18px 0;
-                padding: 20px 16px;
-            }
+    .flip-card {
+        height: 270px;
+        max-width: 360px;
+        margin: 0 auto;
+    }
 
-            .sobre-conteudo {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+    .img-flip {
+        max-height: 120px;
+        object-fit: contain;
+    }
 
-            .titulo-secao,
-            .titulo-bloco {
-                font-size: 26px;
-                line-height: 1.15;
-                margin-bottom: 18px;
-            }
+    .card-sobre,
+    .card-profissinais,
+    .card-transparente,
+    .caixa {
+        margin: 18px 0;
+        padding: 20px 16px;
+    }
 
-            .texto-sobre,
-            .texto-profissionais,
-            .texto-item {
-                text-align: left;
-                font-size: 15.5px;
-                line-height: 1.65;
-                text-indent: 0;
-            }
+    .sobre-conteudo {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
-            .linha-destaque,
-            .linha-destaque.invertida {
-                grid-template-columns: 1fr;
-                grid-template-areas: "texto";
-            }
+    .titulo-secao,
+    .titulo-bloco {
+        font-size: 26px;
+        line-height: 1.15;
+        margin-bottom: 18px;
+    }
 
-            .bloco-icone,
-            .conector {
-                display: none;
-            }
+    .texto-sobre,
+    .texto-profissionais,
+    .texto-item {
+        text-align: left;
+        font-size: 15.5px;
+        line-height: 1.65;
+        text-indent: 0;
+    }
 
-            .img_sobre img {
-                height: auto;
-                max-height: 240px;
-                object-fit: cover;
-            }
+    .linha-destaque,
+    .linha-destaque.invertida {
+        grid-template-columns: 1fr;
+        grid-template-areas: "texto";
+    }
 
-            .serv {
-                grid-template-columns: 1fr;
-                gap: 0;
-                margin: 20px auto 40px auto;
-            }
+    .bloco-icone,
+    .conector {
+        display: none;
+    }
 
-            .corp {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
+    .img_sobre img {
+        height: auto;
+        max-height: 240px;
+        object-fit: cover;
+    }
 
-            .servico-item {
-                font-size: 17px;
-                line-height: 1.45;
-                padding: 12px 4px;
-            }
+    .serv {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin: 20px auto 40px auto;
+    }
 
-            .rodape {
-                padding: 28px 16px;
-                font-size: 13px;
-                line-height: 0;
-                margin-top: 0cm;
-            }
-            .whats {
-                width: 80px;
-                height: auto;
-                max-width: 100%;
-                display: block;
-                margin: 0 auto;
-            }
-        }
+    .corp {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
 
-       @media (max-width: 1180px) {
-            .cabecalho {
-                width: 100%;
-                max-width: 100%;
-                grid-template-columns: 1fr auto;
-            }
-            }
+    .servico-item {
+        font-size: 17px;
+        line-height: 1.45;
+        padding: 12px 4px;
+    }
 
-            .logo_1 {
-                width: 165px;
-                max-width: 70vw;
-            }
+    .rodape {
+        padding: 28px 16px;
+        font-size: 13px;
+        line-height: 1.2;
+        margin-top: 0;
+    }
 
-            .hamburger span {
-                width: 23px;
-            }
+    .whats {
+        width: 80px;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+    }
+}
 
-            .nav-wrapper {
-                max-height: calc(100vh - 68px);
-                padding: 20px 14px 24px;
-            }
+/* CELULAR BEM PEQUENO */
+@media (max-width: 420px) {
+    .cabecalho {
+        min-height: 68px;
+        padding: 8px 12px;
+    }
 
-            .menu {
-                gap: 14px;
-            }
+    .logo_1 {
+        width: 165px;
+        max-width: 70vw;
+    }
 
-            .menu a {
-                font-size: 14px;
-            }
+    .hamburger span {
+        width: 23px;
+    }
 
-            .cta a {
-                width: 100%;
-                font-size: 13.5px;
-                padding: 12px 14px;
-            }
+    .nav-wrapper {
+        max-height: calc(100vh - 68px);
+        padding: 20px 14px 24px;
+    }
 
-            .pagina {
-                padding: 0 12px;
-            }
+    .menu {
+        gap: 14px;
+    }
 
-            .headline {
-                font-size: 22px;
-            }
+    .menu a {
+        font-size: 14px;
+    }
 
-            .subheadline {
-                font-size: 14px;
-            }
+    .cta a {
+        width: 100%;
+        font-size: 13.5px;
+        padding: 12px 14px;
+    }
 
-            .flip-card {
-                height: 245px;
-            }
+    .pagina {
+        padding: 0 12px;
+    }
 
-            .flip-card-front {
-                padding: 16px;
-                gap: 12px;
-            }
+    .headline {
+        font-size: 22px;
+    }
 
-            .flip-card-back {
-                padding: 16px;
-            }
+    .subheadline {
+        font-size: 14px;
+    }
 
-            .flip-card-back p {
-                font-size: 13.5px;
-                line-height: 1.45;
-            }
+    .flip-card {
+        height: 245px;
+    }
 
-            .card-sobre,
-            .card-profissinais,
-            .card-transparente,
-            .caixa {
-                padding: 18px 14px;
-            }
+    .flip-card-front {
+        padding: 16px;
+        gap: 12px;
+    }
 
-            .titulo-secao,
-            .titulo-bloco {
-                font-size: 23px;
-            }
+    .flip-card-back {
+        padding: 16px;
+    }
 
-            .texto-sobre,
-            .texto-profissionais,
-            .texto-item {
-                font-size: 15px;
-            }
-        }
+    .flip-card-back p {
+        font-size: 13.5px;
+        line-height: 1.45;
+    }
+
+    .card-sobre,
+    .card-profissinais,
+    .card-transparente,
+    .caixa {
+        padding: 18px 14px;
+    }
+
+    .titulo-secao,
+    .titulo-bloco {
+        font-size: 23px;
+    }
+
+    .texto-sobre,
+    .texto-profissionais,
+    .texto-item {
+        font-size: 15px;
+    }
+}
+        
+        
 
     </style>
 </head>
