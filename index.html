@@ -1295,7 +1295,29 @@ body {
         padding: 13px 18px;
     }
 }
-        
+   @media (max-width: 1180px) {
+    .logo-wrapper {
+        overflow: visible !important;
+        z-index: 9999;
+    }
+
+    .cabecalho {
+        overflow: visible;
+        position: relative;
+        z-index: 9999;
+    }
+
+    .nav-wrapper {
+        z-index: 9998;
+    }
+
+    .nav-wrapper.aberto {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+}     
 
     </style>
 </head>
