@@ -828,6 +828,107 @@
             white-space: nowrap;
         }
 
+         @media (max-width: 1300px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .conteiner {
+                width: 100%;
+                padding: 20px 24px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .caixa {
+                padding: 30px 30px;
+            }
+
+            .serv {
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin-bottom: 40px;
+            }
+
+            .corp {
+                grid-template-columns: 1fr;
+            }
+
+            .linha-destaque,
+            .linha-destaque.invertida {
+                grid-template-columns: 1fr;
+                grid-template-areas: "texto";
+            }
+
+            .bloco-icone,
+            .conector {
+                display: none;
+            }
+
+            .bloco-texto,
+            .bloco-icone {
+                text-align: center;
+            }
+
+            .texto-item {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 900px) {
+        .card-sobre {
+            padding: 24px 20px;
+        }
+
+        .sobre-conteudo {
+            grid-template-columns: 1fr;
+            gap: 26px;
+        }
+
+        .sobre-texto,
+        .img_sobre {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .titulo-secao {
+            text-align: center;
+        }
+    }
+
+        @media (max-width: 600px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .flip-card {
+                height: 260px;
+            }
+
+            .card-transparente {
+                padding: 20px 16px;
+            }
+
+            .caixa {
+                padding: 24px 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .flip-card {
+                height: 220px;
+            }
+
+            .flip-card-back {
+                padding: 16px;
+            }
+        }
+
         @media (max-width: 1180px) and (min-width: 769px) {
             .cabecalho {
                 padding: 10px 24px;
